@@ -15,7 +15,7 @@ if(dims==1)
     m = 1000;
     number_dt_steps = 15000;
 elseif(dims==2)
-    m=100;
+    m=200;
     number_dt_steps = 5000;
 end
 
@@ -37,39 +37,41 @@ switch modelName
         Params = {10, 3, 1, 36.7, 0.9,   -32, -1, -1.5, -1618, -64, 0.01,    eta, 1};
         %        [L, a, b,  c,    d,     e,   f,  g,    h,     i,   epsilon, eta,  BC (1 periodic, 0 Neumann)]
         Solver = @KellerSegelSolver;
-        Tend=15;
+        Tend=3;
     case 'KellerSegelTuringNeumann'
         Params = {10, 3, 1, 36.7, 0.9,   -32, -1, -1.5, -1618, -64, 0.01,    eta, 0};
         %        [L, a, b,  c,    d,     e,   f,  g,    h,     i,   epsilon, eta,  BC (1 periodic, 0 Neumann)]
         Solver = @KellerSegelSolver;
         Tend = 15;
     case 'SchnakenbergWavePeriodic'
-        Params = {10, 1, 0.5, [0.6,0,0;-0.4,1,79.2;0,0,0.6]', eta, 1};
+        delta = 0.8;
+        Params = {2.38*pi, 1, 0.5, [delta, 0, 0; delta - 1, 1, 198 - 198*delta; 0, 0, delta]', eta, 1};
         %        [L,  a, b,   D,                              eta,  BC]
         Solver = @SchnakenbergSolver;
-        Tend=20;
+        Tend=60;
     case 'SchnakenbergWaveNeumann'
-        Params = {20, 1, 0.5, [0.6,0,0;-0.4,1,79.2;0,0,0.6]', eta, 0};
+        delta = 0.8;
+        Params = {2.38*pi, 1, 0.5, [delta, 0, 0; delta - 1, 1, 198 - 198*delta; 0, 0, delta]', eta, 0};
         %        [L,  a, b,   D,                              eta,  BC]
         Solver = @SchnakenbergSolver;
-        Tend=20;
+        Tend = 1e2;
     case 'MalariaTuringNeumann'
-        Params = {6, 0.1, 1,   0.1, 1,   0.3, 0.25, 0.56, 100, [1,0.5,0.307225;0.870348,1,0;0,0,0.045]', eta, 0};
+        Params = {6, 0.1, 1,   0.1, 1,   0.3, 0.25, 0.5, 100, [1, 0.5, 0.307225; 0.870348, 1, 0; 0, 0, 0.045]', eta, 0};
         %        [L,  b,   b_H, d_H, b_M, d_M, c,    r,    Q,   D,                                        eta,  BC]
         Solver = @MalariaSolver;
         Tend=100;
     case 'MalariaTuringPeriodic'
-        Params = {6, 0.1, 1,   0.1, 1,   0.3, 0.25, 0.56, 100, [1,0.5,0.307225;0.870348,1,0;0,0,0.045]', eta, 1};
+        Params = {6, 0.1, 1,   0.1, 1,   0.3, 0.25, 0.5, 100, [1, 0.5, 0.307225; 0.870348, 1, 0; 0, 0, 0.045]', eta, 1};
         %        [L,  b,   b_H, d_H, b_M, d_M, c,    r,    Q,   D,                                        eta,  BC]
         Solver = @MalariaSolver;
         Tend=100;
     case 'HyperbolicWavePeriodic'
-        Params = {30, 0.259, 0.98, 1.3,    -1,  -1,  0,   -2,  0.1,  eta, 1};
+        Params = {30, 0.259, 0.98, 1.3,    - 1,  - 1,  0,   - 2,  0.1,  eta, 1};
         %        [L,  a,     b,    delta,  d11, d12, d21, d22, tau,  eta,  BC]
         Solver = @HyperbolicSolver;
         Tend=150;
     case 'HyperbolicWaveNeumann'
-        Params = {30, 0.259, 0.98, 1.3,    -1,  -1,  0,   -2,  0.1,  eta, 0};
+        Params = {6, 0.259, 0.98, 1.3,    - 1,  - 1,  0,   - 2,  0.1,  eta, 0};
         %        [L,  a,     b,    delta,  d11, d12, d21, d22, tau,  eta,  BC]
         Solver = @HyperbolicSolver;
         Tend=150;

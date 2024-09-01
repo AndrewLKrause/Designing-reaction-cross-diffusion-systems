@@ -24,8 +24,12 @@ elseif (dims == 2)
         axis tight
         title(['$t=', num2str(T(i)),'$'],'interpreter','latex');
         c = colorbar;
+        ylabel(c, "H", 'interpreter', 'latex', 'rotation', 0);
         c.TickLabelInterpreter = 'latex';
         caxis(clims);
+        xlabel('$x$', 'interpreter', 'latex')
+        ylabel('$y$', 'interpreter', 'latex', 'rotation', 0)
+        set(gca,'fontsize',24);
     end
 
     clims = [min(U(end,ui),[],'all'),max(U(end,ui),[],'all')];
@@ -35,8 +39,12 @@ elseif (dims == 2)
     axis tight
     c = colorbar;
     c.TickLabelInterpreter = 'latex';
+    ylabel(c, "H", 'interpreter', 'latex', 'rotation', 0);
     caxis(clims);
+    xlabel('$x$', 'interpreter', 'latex')
+    ylabel('$y$', 'interpreter', 'latex', 'rotation', 0)
 
+    set(gca,'fontsize',24);
 
 end
 
