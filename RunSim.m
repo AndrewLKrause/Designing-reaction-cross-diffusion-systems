@@ -16,7 +16,7 @@ if(dims==1)
     number_dt_steps = 15000;
 elseif(dims==2)
     m=200;
-    number_dt_steps = 5000;
+    number_dt_steps = 1000;
 end
 
 % Numerical tolerances (absolute and relative).
@@ -66,12 +66,12 @@ switch modelName
         Solver = @MalariaSolver;
         Tend=100;
     case 'HyperbolicWavePeriodic'
-        Params = {30, 0.259, 0.98, 1.3,    - 1,  - 1,  0,   - 2,  0.1,  eta, 1};
+        Params = {30, 0.257, 0.98, 1.3,    - 1,  - 1,  0,   - 2,  0.1,  eta, 1};
         %        [L,  a,     b,    delta,  d11, d12, d21, d22, tau,  eta,  BC]
         Solver = @HyperbolicSolver;
         Tend=150;
     case 'HyperbolicWaveNeumann'
-        Params = {6, 0.259, 0.98, 1.3,    - 1,  - 1,  0,   - 2,  0.1,  eta, 0};
+        Params = {6, 0.257, 0.98, 1.3,    - 1,  - 1,  0,   - 2,  0.1,  eta, 0};
         %        [L,  a,     b,    delta,  d11, d12, d21, d22, tau,  eta,  BC]
         Solver = @HyperbolicSolver;
         Tend=150;
