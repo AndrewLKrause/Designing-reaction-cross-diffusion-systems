@@ -9,7 +9,7 @@ if (dims == 1)
 
     h = legend('$t=0$','$t=10\%$','$t=50\%$','$t=100\%$','interpreter','latex');
 
-    set(gca,'fontsize',24);
+    set(gca,'fontsize',30);
 
 elseif (dims == 2)
     M = 6;
@@ -44,7 +44,7 @@ elseif (dims == 2)
     xlabel('$x$', 'interpreter', 'latex')
     ylabel('$y$', 'interpreter', 'latex', 'rotation', 0)
 
-    set(gca,'fontsize',24);
+    set(gca,'fontsize',40);
 
 end
 

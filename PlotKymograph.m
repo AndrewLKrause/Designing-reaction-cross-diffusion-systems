@@ -14,6 +14,6 @@ c.TickLabelInterpreter = 'latex';
 c.Label.Interpreter = 'latex';
 
 set(gca,'TickLabelInterpreter','latex')
-set(gca,'fontsize',24);
+set(gca,'fontsize',40);
 
 end
